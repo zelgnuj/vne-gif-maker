@@ -245,6 +245,7 @@ namespace VneGif.App
                     Select(clip.Id, false);
                 }
                 Notify(true);
+                ScheduleCardThumbs();
                 MakeThumbnails(clip);
                 AnalyzeScenes(clip.Id);
                 return clip.Id;
@@ -340,6 +341,7 @@ namespace VneGif.App
             Clips.Insert(i + 1, c);
             Select(c.Id, false);
             if (!c.ScenesAnalyzed) AnalyzeScenes(c.Id);
+            ScheduleCardThumbs();
             Notify(true);
         }
 
