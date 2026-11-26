@@ -2,26 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleName</key><string>VnExpress GIF Maker</string>
-    <key>CFBundleDisplayName</key><string>VnExpress GIF Maker</string>
-    <key>CFBundleIdentifier</key><string>local.vne.gifmaker</string>
-    <key>CFBundleExecutable</key><string>VNEGifMaker</string>
-    <key>CFBundlePackageType</key><string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>1.2</string>
-    <key>CFBundleVersion</key><string>2</string>
-    <key>CFBundleIconFile</key><string>AppIcon</string>
-    <key>LSMinimumSystemVersion</key><string>14.0</string>
-    <key>NSHighResolutionCapable</key><true/>
-    <key>NSHumanReadableCopyright</key><string>© 2026 Lâm Nguyễn – Ban Video, VnExpress</string>
-    <key>CFBundleDocumentTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeName</key><string>Video</string>
-            <key>CFBundleTypeRole</key><string>Viewer</string>
-            <key>LSHandlerRank</key><string>Alternate</string>
-            <key>LSItemContentTypes</key>
-            <array><string>public.movie</string></array>
-        </dict>
-    </array>
+	<key>CFBundleDisplayName</key>
+	<string>VnExpress GIF Maker</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Video</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.movie</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>VNEGifMaker</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>local.vne.gifmaker</string>
+	<key>CFBundleName</key>
+	<string>VnExpress GIF Maker</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.3</string>
+	<key>CFBundleVersion</key>
+	<string>3</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.0</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2026 Lâm Nguyễn – Ban Video, VnExpress</string>
 </dict>
 </plist>
