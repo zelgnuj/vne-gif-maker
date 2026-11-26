@@ -1,0 +1,29 @@
+VnExpress GIF Maker — cách cài & mở lần đầu
+=====================================
+Tác giả: Lâm Nguyễn – Ban Video, VnExpress
+
+Yêu cầu: Mac chip Apple (M1/M2/M3/M4), macOS 14 Sonoma trở lên.
+Không cần cài thêm gì (ffmpeg đã có sẵn trong app).
+
+1. Kéo "VnExpress GIF Maker.app" vào thư mục Applications (Ứng dụng).
+2. Mở app bằng double-click. Lần đầu macOS sẽ báo
+   "Apple không thể xác minh..." → bấm "Xong" (Done), KHÔNG bấm "Chuyển vào Thùng rác".
+3. Mở  > Cài đặt hệ thống (System Settings) > Quyền riêng tư & Bảo mật (Privacy & Security),
+   kéo xuống dưới cùng, thấy dòng "VnExpress GIF Maker đã bị chặn..." → bấm "Vẫn mở" (Open Anyway),
+   nhập mật khẩu máy.
+4. Từ lần sau mở bình thường.
+
+(Lý do: app nội bộ, không phát hành qua App Store nên macOS hỏi xác nhận một lần.)
+
+Cập nhật
+--------
+App tự kiểm tra bản mới mỗi ngày khi mở. Có bản mới thì bấm "Cập nhật ngay":
+app tự tải, thay bản cũ và mở lại. Không cần cài lại thủ công.
+
+Cách dùng nhanh
+---------------
+- Kéo một hoặc nhiều video vào cửa sổ.
+- Kéo hai mép vùng chọn trên timeline để cắt đoạn; ↑/↓ nhảy cảnh, X chọn trọn cảnh.
+- ⌘D lấy thêm đoạn từ cùng video; dải "Trình tự" bên dưới để sắp thứ tự.
+- Tỉ lệ khung ở nút "Tỉ lệ" trên cùng; chỉnh khung / cắt viền / tốc độ / màu ở cột bên phải.
+- Bấm "Xuất GIF" (⌘↩) và chọn nơi lưu. App tự giữ file dưới 8 MB.
