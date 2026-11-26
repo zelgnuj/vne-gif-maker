@@ -1,7 +1,7 @@
 <Window x:Class="VneGif.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="VnExpress GIF Maker" Width="1360" Height="880" MinWidth="1040" MinHeight="680"
+        Title="VnExpress GIF Maker" Width="1360" Height="880" MinWidth="1000" MinHeight="680"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource Bg}" Foreground="{StaticResource Text}"
         FontFamily="Segoe UI" FontSize="12.5" AllowDrop="True"

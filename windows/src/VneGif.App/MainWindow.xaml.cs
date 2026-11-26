@@ -438,14 +438,30 @@ namespace VneGif.App
                 b.FontSize = 12;
                 return b;
             }
+            fitButton = Z("Vừa đoạn chọn", () => { var c = State.Selected; if (c != null) State.Timeline.Fit(c.In, c.Out); }, "Thu phóng để vừa đoạn đang chọn", null);
+            allButton = Z("Toàn bộ", State.Timeline.ShowAll, "Hiển thị toàn bộ video", null);
             var right = UI.Row(
                 Z(UI.Icon("", 12), () => State.Timeline.Zoom(1 / 1.6, Anchor()), "Thu nhỏ timeline (-)"),
                 zoomSlider,
                 Z(UI.Icon("", 12), () => State.Timeline.Zoom(1.6, Anchor()), "Phóng to timeline (=)"),
-                Z("Vừa đoạn chọn", () => { var c = State.Selected; if (c != null) State.Timeline.Fit(c.In, c.Out); }, "Thu phóng để vừa đoạn đang chọn", null),
-                Z("Toàn bộ", State.Timeline.ShowAll, "Hiển thị toàn bộ video", null));
+                fitButton, allButton);
             DockPanel.SetDock(right, Dock.Right);
             row.Children.Add(right);
+            LeftPane.SizeChanged += (s, e) => Compact();
+        }
+
+        Button fitButton, allButton;
+
+        /// <summary>Narrow windows (1024-px screens, 125 % scaling): drop the least important controls instead of overlapping.</summary>
+        void Compact()
+        {
+            double w = LeftPane.ActualWidth;
+            var v = (Func<bool, Visibility>)(show => show ? Visibility.Visible : Visibility.Collapsed);
+            sceneText.Visibility = v(w >= 780);
+            if (w < 780) sceneBar.Visibility = Visibility.Collapsed;
+            zoomSlider.Visibility = v(w >= 820);
+            fitButton.Visibility = allButton.Visibility = v(w >= 740);
+            speedNote.Visibility = v(w >= 900);
         }
 
         void Reveal() { var c = State.Selected; if (c != null) State.Timeline.Reveal(c.In, c.Out); }
@@ -751,7 +767,7 @@ namespace VneGif.App
                 durText.Text = "/ " + Num.Time(c.Duration);
                 if (c.SceneProgress.HasValue)
                 {
-                    sceneBar.Visibility = Visibility.Visible;
+                    sceneBar.Visibility = LeftPane.ActualWidth >= 780 ? Visibility.Visible : Visibility.Collapsed;
                     sceneBar.Value = c.SceneProgress.Value;
                     sceneText.Text = $"Đang phân tích cảnh {(int)(c.SceneProgress.Value * 100)}%";
                 }

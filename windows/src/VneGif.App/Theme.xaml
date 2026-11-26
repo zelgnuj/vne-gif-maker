@@ -142,7 +142,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <Border x:Name="b" Background="Transparent" CornerRadius="5" Padding="6,0" Margin="2" MinHeight="22">
+                    <Border x:Name="b" Background="Transparent" CornerRadius="5" Padding="3,0" Margin="2" MinHeight="22">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="False"/>
                     </Border>
                     <ControlTemplate.Triggers>
