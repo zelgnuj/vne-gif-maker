@@ -1,0 +1,51 @@
+# Checks the Windows app on a real Windows machine (GitHub-hosted runner):
+#  1. core self-test with the bundled Windows ffmpeg.exe / gifsicle.exe (Unicode paths, optimizer, scenes)
+#  2. unattended UI run (--smoke): loads videos, plays, edits, exports a GIF, saves screenshots
+# Screenshots, the GIF and logs are uploaded as the "windows-smoke" artifact.
+name: Windows
+on:
+  workflow_dispatch:
+  push:
+    paths: ["windows/**", ".github/workflows/windows.yml"]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: "8.0.x" }
+      - name: Fetch ffmpeg and gifsicle
+        run: python windows/vendor/fetch.py
+      - name: Build
+        run: dotnet build windows/src/VneGif.App -c Release -nologo
+      - name: Core self-test (Windows ffmpeg/gifsicle)
+        shell: pwsh
+        env:
+          VNE_FFMPEG: ${{ github.workspace }}\windows\vendor\ffmpeg.exe
+          VNE_GIFSICLE: ${{ github.workspace }}\windows\vendor\gifsicle.exe
+          SRC_FFMPEG: ${{ github.workspace }}\windows\vendor\ffmpeg.exe
+        run: dotnet run -c Release --project windows/tests/VneGif.SelfTest
+      - name: UI smoke run
+        shell: pwsh
+        run: |
+          $bin = "windows\src\VneGif.App\bin\Release\net48"
+          Copy-Item windows\vendor\ffmpeg.exe, windows\vendor\gifsicle.exe $bin
+          $ff = "windows\vendor\ffmpeg.exe"
+          $media = Join-Path $env:RUNNER_TEMP "phim thử"
+          New-Item -ItemType Directory -Force $media | Out-Null
+          & $ff -hide_banner -loglevel error -y -f lavfi -i "testsrc2=s=1920x1080:r=30:d=4" -f lavfi -i "smptebars=s=1920x1080:r=30:d=3" -filter_complex "[0:v][1:v]concat=n=2:v=1:a=0,format=yuv420p" -c:v libx264 -preset veryfast "$media\cảnh ngang.mp4"
+          & $ff -hide_banner -loglevel error -y -f lavfi -i "testsrc=s=720x1280:r=25:d=4" -c:v libx264 -preset veryfast -pix_fmt yuv420p "$media\dọc.mp4"
+          $out = Join-Path $env:RUNNER_TEMP "smoke"
+          $p = Start-Process -FilePath "$bin\VnExpressGifMaker.exe" -ArgumentList @("--smoke", "`"$out`"", "`"$media\cảnh ngang.mp4`"", "`"$media\dọc.mp4`"") -PassThru -Wait
+          Get-Content "$out\smoke.txt" -ErrorAction SilentlyContinue
+          if (Test-Path "$env:TEMP\vnegif-smoke-errors.log") { Get-Content "$env:TEMP\vnegif-smoke-errors.log"; Copy-Item "$env:TEMP\vnegif-smoke-errors.log" $out }
+          if (Test-Path "$env:APPDATA\VNEGifMaker\errors.log") { Copy-Item "$env:APPDATA\VNEGifMaker\errors.log" $out }
+          Write-Host "exit code: $($p.ExitCode)"
+          exit $p.ExitCode
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-smoke
+          path: ${{ runner.temp }}/smoke

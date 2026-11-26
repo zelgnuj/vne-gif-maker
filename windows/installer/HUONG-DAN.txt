@@ -1,0 +1,15 @@
+VnExpress GIF Maker cho Windows
+================================
+
+Bản di động (portable): giải nén cả thư mục rồi mở VnExpressGifMaker.exe.
+Không cần cài thêm gì: ứng dụng dùng .NET Framework 4.8 có sẵn trong Windows 10 (1903 trở lên) và Windows 11.
+Giữ nguyên ffmpeg.exe và gifsicle.exe cạnh VnExpressGifMaker.exe.
+
+Lần đầu mở, Windows có thể hiện "Windows đã bảo vệ PC của bạn" (SmartScreen) vì ứng dụng chưa được ký số:
+bấm "Thông tin thêm" rồi "Vẫn chạy".
+
+Bản cài đặt (VnExpress-GIF-Maker-Windows-Setup.exe) tự cập nhật khi có bản mới;
+bản di động chỉ báo có bản mới và mở trang tải.
+
+Phát triển bởi Lâm Nguyễn · Ban Video, VnExpress
+https://github.com/zelgnuj/vne-gif-maker
