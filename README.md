@@ -6,7 +6,7 @@ App macOS cắt và ghép video thành GIF ngang dưới 8 MB, làm thumbnail ch
 
 Yêu cầu: Mac chip Apple, macOS 14 trở lên.
 
-1. Tải **VnExpress-GIF-Maker.zip** ở [Releases](https://github.com/zelgnuj/vne-gif-maker/releases/latest), giải nén, kéo app vào **Applications**.
+1. Tải **VnExpress-GIF-Maker.dmg** ở [Releases](https://github.com/zelgnuj/vne-gif-maker/releases/latest), mở ra, kéo app vào **Applications**.
 2. Lần đầu mở: bấm **Xong** ở thông báo của macOS, vào **Cài đặt hệ thống › Quyền riêng tư & Bảo mật**, bấm **Vẫn mở**.
 
 App tự kiểm tra và cài bản mới khi mở.

@@ -27,5 +27,5 @@ git diff --cached --quiet || git commit -q -m "Release $V"
 git tag "v$V"
 git push -q origin HEAD
 git push -q origin "v$V"
-gh release create "v$V" dist/VnExpress-GIF-Maker.zip --title "VnExpress GIF Maker $V" --notes "$NOTES"
+gh release create "v$V" dist/VnExpress-GIF-Maker.dmg dist/VnExpress-GIF-Maker.zip --title "VnExpress GIF Maker $V" --notes "$NOTES"
 echo "Đã phát hành v$V"

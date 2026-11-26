@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build "VnExpress GIF Maker.app" into ./build.
 #   --install  copy to /Applications
-#   --dist     also make dist/VnExpress-GIF-Maker.zip to share (ffmpeg bundled, no Homebrew needed)
+#   --dist     also make dist/VnExpress-GIF-Maker.dmg (to share) and .zip (for the in-app updater)
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -62,6 +62,16 @@ for arg in "$@"; do
       ditto -c -k --sequesterRsrc --keepParent "$STAGE" dist/VnExpress-GIF-Maker.zip
       rm -rf "$(dirname "$STAGE")"
       echo "Dist: dist/VnExpress-GIF-Maker.zip ($(du -h dist/VnExpress-GIF-Maker.zip | cut -f1))"
+      # Disk image for people: open it, drag the app onto Applications.
+      DMGSTAGE="$(mktemp -d)/$NAME"
+      mkdir -p "$DMGSTAGE"
+      cp -R "$APP" "$DMGSTAGE/"
+      cp "Resources/Cách mở lần đầu.txt" "$DMGSTAGE/"
+      ln -s /Applications "$DMGSTAGE/Applications"
+      rm -f dist/VnExpress-GIF-Maker.dmg
+      hdiutil create -quiet -volname "$NAME" -srcfolder "$DMGSTAGE" -fs HFS+ -format UDZO -ov dist/VnExpress-GIF-Maker.dmg
+      rm -rf "$(dirname "$DMGSTAGE")"
+      echo "Dist: dist/VnExpress-GIF-Maker.dmg ($(du -h dist/VnExpress-GIF-Maker.dmg | cut -f1))"
       ;;
   esac
 done
